@@ -1,4 +1,4 @@
-package com.jsr.demo;
+package com.jsr.demo.entity;
 
 public class Student {
     private String firstName;

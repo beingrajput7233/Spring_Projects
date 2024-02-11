@@ -1,6 +1,6 @@
 package com.jsr.demo.rest;
 
-import com.jsr.demo.Student;
+import com.jsr.demo.entity.Student;
 import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
