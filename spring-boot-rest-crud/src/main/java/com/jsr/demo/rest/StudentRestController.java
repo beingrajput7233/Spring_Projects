@@ -33,6 +33,13 @@ public class StudentRestController {
     // "/students/{studentId}" ---return a single student....by index of array list
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId){
+
+        // Exception Handling
+
+        if((studentId>=l.size())||(studentId<0)){
+            throw new StudentNotFoundException("Student Id not found - "+studentId);
+        }
+
         return l.get(studentId);
     }
 }
