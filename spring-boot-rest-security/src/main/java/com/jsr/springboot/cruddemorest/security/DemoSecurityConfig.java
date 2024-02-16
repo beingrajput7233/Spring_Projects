@@ -8,10 +8,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
+
+
+    /*
+
+    THIS IS TO HARD CODE USERS
 
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
@@ -32,15 +41,32 @@ public class DemoSecurityConfig {
         // now spring-boot will not use the user/passwd from app.properties
     }
 
+     */
+
+
+
+    /* USING JDBC ...NO MORE HARD CODING */
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource){
+        // it will automatially find tables users and authorities
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+
+
+
+
+
+
     //For restricting access based on roles
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(configurer->
-            configurer.requestMatchers(HttpMethod.GET,"/api/employees").hasRole("Employee")
-                    .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("Employee")
-                    .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("Manager")
-                    .requestMatchers(HttpMethod.PUT,"/api/employees").hasRole("Manager")
-                    .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("Admin")
+            configurer.requestMatchers(HttpMethod.GET,"/api/employees").hasRole("EMPLOYEE")
+                    .requestMatchers(HttpMethod.GET,"/api/employees/**").hasRole("EMPLOYEE")
+                    .requestMatchers(HttpMethod.POST,"/api/employees").hasRole("MANAGER")
+                    .requestMatchers(HttpMethod.PUT,"/api/employees").hasRole("MANAGER")
+                    .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasRole("ADMIN")
 
         );
 
