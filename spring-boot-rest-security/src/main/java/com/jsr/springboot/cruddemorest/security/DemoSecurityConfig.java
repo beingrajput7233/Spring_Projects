@@ -43,7 +43,7 @@ public class DemoSecurityConfig {
 
      */
 
-
+    
 
     /* USING JDBC ...NO MORE HARD CODING */
     @Bean
