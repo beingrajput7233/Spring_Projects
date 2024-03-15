@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Student Form</title>
+</head>
+
+<body>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+
+<!--    object m jo student hh uska name same hona chahiye jo model m key bheja hh-->
+
+    First Name: <input type="text" th:field="${student.firstName}" />
+    <br><br>
+    Last Name: <input type="text" th:field="${student.lastName}" />
+<!--    when form is loaded spring MVC will read student from the model and then call student.getFirstName() nd lastName-->
+
+
+
+    <br><br>
+    <input type="submit" value="Submit"/>
+
+<!--    when form is submitted setter method will be called-->
+
+</form>
+
+</body>
+
+
+</html>
