@@ -16,6 +16,9 @@
     Last Name: <input type="text" th:field="${student.lastName}" />
 <!--    when form is loaded spring MVC will read student from the model and then call student.getFirstName() nd lastName-->
 
+    <select th:field="${student.country}">
+        <option th:each="tempCountry:${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+    </select>
 
 
     <br><br>
